@@ -3,11 +3,21 @@ variable "esxi_password" {
   type        = string
   sensitive   = true  
 }
+variable "exsi_username" {
+  description = "ESXi gebruikersnaam"
+  type        = string
+  sensitive   = false 
+}
 
+variable "exsi_server" {
+  description = "ESXi server"
+  type        = string
+  sensitive   = false 
+}
 provider "vsphere" {
-  user     = "I540703@fhict.local"
+  user     = var.exsi_username
   password = var.esxi_password
-  vsphere_server = "vcenter.netlab.fhict.nl"
+  vsphere_server = var.exsi_server
    allow_unverified_ssl = true
 }
 
